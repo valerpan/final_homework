@@ -1,0 +1,3438 @@
+<html lang="en"><head>
+
+    
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Helpdesk :: Powered by django-helpdesk</title>
+
+
+<!-- Bootstrap Core CSS -->
+
+<link href="/static/helpdesk/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+<!-- Font Awesome -->
+<link href="/static/helpdesk/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+<!-- DataTables CSS-->
+<link href="/static/helpdesk/vendor/datatables/css/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="/static/helpdesk/vendor/datatables/css/buttons.dataTables.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="/static/helpdesk/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+<!-- Morris Charts CSS -->
+
+<link href="/static/helpdesk/vendor/morrisjs/morris.css" rel="stylesheet">
+
+
+<!-- Custom CSS -->
+<link href="/static/helpdesk/css/sb-admin.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/helpdesk/helpdesk-extend.css" type="text/css" media="screen">
+
+
+<!-- RSS -->
+<link rel="alternate" href="/rss/user/admin/" type="application/rss+xml" title="My Open Tickets">
+<link rel="alternate" href="/rss/recent_activity/" type="application/rss+xml" title="All Recent Activity">
+<link rel="alternate" href="/rss/unassigned/" type="application/rss+xml" title="Unassigned Tickets">
+
+<style type="text/css">
+/* hide google translate top bar */
+.goog-te-banner-frame {display: none !important;}
+.goog-te-balloon-frame {display: none !important;}
+/* hide google translate tooltips (generated for every translated item) */
+.goog-tooltip {display: none !important; }
+</style>
+
+<style type="text/css">
+/* header */
+#dropdown li.headerlink { width: auto; float: left; text-align: center; }
+
+/* query list */
+#dropdown li.headerlink ul {    display: none;
+                                text-align: left;
+                                position: absolute;
+                                padding: 5px;
+                                z-index: 2; }
+/* query entries */
+#dropdown li.headerlink:hover ul { display: block; width: auto; }
+#dropdown li.headerlink:hover ul li { padding: 5px; margin: 1px; float: none; display: block; }
+</style>
+
+
+
+
+    
+    <!-- Timeline 3 CSS -->
+    
+    <link title="timeline-styles" rel="stylesheet" href="/static/helpdesk/vendor/timeline3/css/timeline.css">
+    
+
+    
+<!-- jQuery and Bootstrap Core -->
+
+<script src="/static/helpdesk/vendor/jquery/jquery.min.js"></script>
+<script src="/static/helpdesk/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Core plugin JavaScript-->
+<script src="/static/helpdesk/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="/static/helpdesk/vendor/chart.js/Chart.min.js"></script><style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+<script src="/static/helpdesk/vendor/datatables/js/jquery.dataTables.js"></script>
+<script src="/static/helpdesk/vendor/datatables/js/dataTables.bootstrap4.js"></script>
+<script src="/static/helpdesk/vendor/datatables/js/dataTables.buttons.js"></script>
+<script src="/static/helpdesk/vendor/datatables/js/buttons.colVis.js"></script>
+
+<!-- jQuery UI DatePicker -->
+<script src="/static/helpdesk/vendor/jquery-ui/jquery-ui.min.js" type="text/javascript" language="javascript"></script>
+<link href="/static/helpdesk/vendor/jquery-ui/jquery-ui.css" rel="stylesheet">
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/static/helpdesk/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/static/helpdesk/js/sb-admin.js"></script>
+
+
+
+
+
+</head>
+
+<body id="bg-dark">
+
+    
+
+    
+
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand" href="/">Helpdesk</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0 mr-auto" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" id="searchform" method="get" action="/tickets/">
+        <div class="input-group">
+          <input type="text" class="form-control" name="q" size="15" placeholder="Search..." id="search_query" title="Enter a keyword, or a ticket number to jump straight to that ticket." aria-label="Search" aria-describedby="basic-addon2">
+          <input type="hidden" name="status" value="1"><input type="hidden" name="status" value="2"><input type="hidden" name="status" value="3"><input type="hidden" name="search_type" value="header">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-search"></i> Go
+            </button>
+          </div>
+        </div>
+        <input type="hidden" name="csrfmiddlewaretoken" value="0Pt3LHQKlCZl6itkM9g50rCcSNb8n8BVNFY192E8YC8Z3RI0X8iBdIHk4z80nrJt">
+      </form>
+      
+      <!-- Navbar -->
+      <ul class="navbar-nav mr-md-0">
+      
+        
+        <li class="nav-item dropdown no-arrow mx-1">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=360">some seacrh
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=69">имя
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=83">test
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=84">test
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=100">test_query
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=101">test_query
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=102">ошибка
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=103">test query name
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=104">Пуушу
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=105">Пушшу2
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=106">поисковой запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=107">query_name_test
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=108">Тест
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=109">123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=110">Сохранено
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=111">1114444
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=112">1241414
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=114">Something else
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=115">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=116">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=117">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=118">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=119">2
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=120">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=121">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=122">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=123">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=124">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=125">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=126">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=127">bobobobo
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=128">TITLECLOSED
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=129">ereeerererer
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=130">allfilters
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=131">asdf
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=132">test saving search query aFhelKdjdwlsJDLsh3
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=133">pKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=134">pKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=135">ApKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=136">BApKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=137">BApKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=138">GHpKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=140">XDFpKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=143">XDFpKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=144">XDFpKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=149">1
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=150">Фывапролджэ
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=151">Фывапролджэ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=152">13453456365
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=153">Фывапролджэ saved query
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=154">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=155">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=156">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=157">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=158">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=159">вркльтрзкьтэькнэзньэзвн
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=160">мой поиск
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=161">test001100
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=162">ЩЬФбб
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=163">БФТИЕ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=164">аПКПЖ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=165">МДЮНМ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=166">ЩЫФбК
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=167">бЯЫУП
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=168">ЭОМРа
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=169">ДРЮВЙ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=170">ЩЧЦбЦ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=171">МаЖЫФ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=172">АННбБ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=173">запросзапрос123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=174">9898
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=175">запросзапрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=176">0000
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=177">98765
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=178">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=179">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=180">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=181">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=182">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=183">ТестЗапрос111
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=184">111
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=317">Автотест Поиск 2026
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=319">Автотест Поиск 2026
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=321">Сохр. поисковый запр. 123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=193">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=194">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=195">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=196">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=197">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=198">имя запроса 1
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=199">rrrrrrt
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=201">123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=202">ВЬУСАЩТВМЕУЖ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=203">БУЙВНИИЦЧУЕЖ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=204">РЯПШУЦОЪбФСб
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=205">ОМШДПНаВОГМФ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=206">ЫХРЩРВГМУБЪЦ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=207">ОбЭОбБЪЪЙЬДУ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=208">ХЯДЯЗОТЯФЩЮР
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=209">МВЗбаАХФОЯИТ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=211">rrrrrrrrrrrrrrrrrr
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=212">ЫМУЙЛХШ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=213">аВНЖОКЖ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=214">testQuery
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=215">ЩВ65Эа
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=216">аК45ЦЛ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=217">190
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=218">191
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=219">testQuery
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=220">СЖ68ЗЯ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=221">ОИ11бД
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=222">МЩ77Шб
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=223">ТБ64ЮМ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=224">ПЕ63ЫЮ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=225">ЕЫ28ПК
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=226">впвап
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=227">тест
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=228">поисковой запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=229">поисковой запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=230">Test_Tiket_
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=231">Test_Tiket_2
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=232">TestZapros
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=233">TestZapros
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=234">TestZapros
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=235">UI Saved Query Example
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=236">UI Saved Query Example
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=237">nt556667
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=238">Queryokfov716
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=239">Queryhuqkz395
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=240">Queryvqnqp726
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=241">Querypuwtl388
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=242">Querylhdtu481
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=243">some name
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=244">some
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=315">Мой супер поиск 123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=249">Тестовый запрос ЭГСЗЧЭ3065
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=250">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=251">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=252">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=253">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=254">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=255">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=256">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=257">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=258">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=259">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=260">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=261">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=262">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=263">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=264">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=265">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=266">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=267">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=268">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=269">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=270">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=271">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=272">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=273">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=274">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=275">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=276">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=277">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=278">МШШЩММЮО
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=279">РЧЛМОМХЫ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=280">addhdhddjdfhbvjvhv
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=281">addhdhddjdfhbvjvhv
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=283">ЭЖЗЦЯ012
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=285">q1122
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=286">ГЧЫЙХ857
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=287">поисковый запрос 13
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=288">поисковый запрос 13
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=289">поисковый запрос 131
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=290">поисковый запрос 333
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=291">поисковый запрос 333
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=292">поисковый запрос 333
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=293">поисковый запрос 333
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=316">Запрос1
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=318">Автотест Поиск 2026
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=320">Автотест Поиск 2026
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=341">ываац33в2всв34ке
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=353">поисковой запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=355">Запрос для UI теста 1234
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=356">Тикет поиск запр111
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=357">Мои задачи
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=358">поиск по поиску
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=359">some seacrh
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=361">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=362">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=363">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=364">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=365">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=366">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=367">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=368">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=369">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=370">testQuery
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=378">ischTest2
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=379">ischTestSearch1
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=380">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=381">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=394">тест
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=382">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=383">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=384">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=385">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=386">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=387">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=388">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=389">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=390">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=391">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=392">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=393">ischTestSearch11
+                    
+                </a>
+            
+          </div>
+        </li>
+        
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+            admin
+            <i class="fas fa-caret-down fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="/settings/"><i class="fas fa-fw fa-user-cog"></i> User Settings</a>
+            <a class="dropdown-item" href="/rss/"><i class="fas fa-fw fa-rss-square"></i> RSS Feeds</a>
+            
+            <a class="dropdown-item" href="/password_change/"><i class="fas fa-fw fa-user-secret"></i> Change password</a>
+            
+            <div class="dropdown-divider"></div>
+            
+            <a class="dropdown-item" href="/system_settings/"><i class="fas fa-fw fa-cogs"></i> System Settings</a>
+            <div class="dropdown-divider"></div>
+            
+            <a class="dropdown-item" href="/logout/"><i class="fas fa-fw fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </li>
+      
+      </ul>
+
+    </nav>
+
+
+    <div id="wrapper">
+        
+
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav">
+    
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard/">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tickets/">
+            <i class="fas fa-fw fa-tasks"></i>
+            <span>All Tickets</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown show">
+          <a class="nav-link dropdown-toggle" href="#" id="ticketsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-search"></i>
+            <span>Saved Queries</span>
+          </a>
+          <div class="dropdown-menu show" aria-labelledby="ticketsDropdown" x-placement="top-start" style="position: absolute; transform: translate3d(5px, -163px, 0px); top: 0px; left: 0px; will-change: transform;">
+            
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=360">some seacrh
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=69">имя
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=83">test
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=84">test
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=100">test_query
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=101">test_query
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=102">ошибка
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=103">test query name
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=104">Пуушу
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=105">Пушшу2
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=106">поисковой запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=107">query_name_test
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=108">Тест
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=109">123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=110">Сохранено
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=111">1114444
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=112">1241414
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=114">Something else
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=115">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=116">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=117">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=118">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=119">2
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=120">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=121">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=122">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=123">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=124">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=125">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=126">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=127">bobobobo
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=128">TITLECLOSED
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=129">ereeerererer
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=130">allfilters
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=131">asdf
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=132">test saving search query aFhelKdjdwlsJDLsh3
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=133">pKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=134">pKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=135">ApKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=136">BApKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=137">BApKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=138">GHpKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=140">XDFpKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=143">XDFpKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=144">XDFpKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=149">1
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=150">Фывапролджэ
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=151">Фывапролджэ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=152">13453456365
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=153">Фывапролджэ saved query
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=154">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=155">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=156">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=157">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=158">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=159">вркльтрзкьтэькнэзньэзвн
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=160">мой поиск
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=161">test001100
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=162">ЩЬФбб
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=163">БФТИЕ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=164">аПКПЖ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=165">МДЮНМ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=166">ЩЫФбК
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=167">бЯЫУП
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=168">ЭОМРа
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=169">ДРЮВЙ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=170">ЩЧЦбЦ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=171">МаЖЫФ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=172">АННбБ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=173">запросзапрос123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=174">9898
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=175">запросзапрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=176">0000
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=177">98765
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=178">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=179">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=180">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=181">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=182">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=183">ТестЗапрос111
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=184">111
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=317">Автотест Поиск 2026
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=319">Автотест Поиск 2026
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=321">Сохр. поисковый запр. 123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=193">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=194">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=195">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=196">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=197">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=198">имя запроса 1
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=199">rrrrrrt
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=201">123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=202">ВЬУСАЩТВМЕУЖ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=203">БУЙВНИИЦЧУЕЖ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=204">РЯПШУЦОЪбФСб
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=205">ОМШДПНаВОГМФ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=206">ЫХРЩРВГМУБЪЦ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=207">ОбЭОбБЪЪЙЬДУ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=208">ХЯДЯЗОТЯФЩЮР
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=209">МВЗбаАХФОЯИТ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=211">rrrrrrrrrrrrrrrrrr
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=212">ЫМУЙЛХШ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=213">аВНЖОКЖ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=214">testQuery
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=215">ЩВ65Эа
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=216">аК45ЦЛ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=217">190
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=218">191
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=219">testQuery
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=220">СЖ68ЗЯ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=221">ОИ11бД
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=222">МЩ77Шб
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=223">ТБ64ЮМ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=224">ПЕ63ЫЮ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=225">ЕЫ28ПК
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=226">впвап
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=227">тест
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=228">поисковой запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=229">поисковой запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=230">Test_Tiket_
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=231">Test_Tiket_2
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=232">TestZapros
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=233">TestZapros
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=234">TestZapros
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=235">UI Saved Query Example
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=236">UI Saved Query Example
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=237">nt556667
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=238">Queryokfov716
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=239">Queryhuqkz395
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=240">Queryvqnqp726
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=241">Querypuwtl388
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=242">Querylhdtu481
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=243">some name
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=244">some
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=315">Мой супер поиск 123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=249">Тестовый запрос ЭГСЗЧЭ3065
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=250">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=251">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=252">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=253">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=254">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=255">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=256">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=257">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=258">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=259">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=260">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=261">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=262">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=263">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=264">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=265">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=266">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=267">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=268">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=269">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=270">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=271">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=272">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=273">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=274">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=275">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=276">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=277">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=278">МШШЩММЮО
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=279">РЧЛМОМХЫ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=280">addhdhddjdfhbvjvhv
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=281">addhdhddjdfhbvjvhv
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=283">ЭЖЗЦЯ012
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=285">q1122
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=286">ГЧЫЙХ857
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=287">поисковый запрос 13
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=288">поисковый запрос 13
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=289">поисковый запрос 131
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=290">поисковый запрос 333
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=291">поисковый запрос 333
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=292">поисковый запрос 333
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=293">поисковый запрос 333
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=316">Запрос1
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=318">Автотест Поиск 2026
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=320">Автотест Поиск 2026
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=341">ываац33в2всв34ке
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=353">поисковой запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=355">Запрос для UI теста 1234
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=356">Тикет поиск запр111
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=357">Мои задачи
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=358">поиск по поиску
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=359">some seacrh
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=361">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=362">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=363">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=364">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=365">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=366">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=367">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=368">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=369">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=370">testQuery
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=378">ischTest2
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=379">ischTestSearch1
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=380">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=381">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=394">тест
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=382">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=383">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=384">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=385">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=386">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=387">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=388">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=389">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=390">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=391">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=392">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=393">ischTestSearch11
+                
+            </a>
+            
+            
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tickets/submit/">
+            <i class="fas fa-fw fa-plus-circle"></i>
+            <span>New Ticket</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/reports/">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/kb/">
+            <i class="fas fa-fw fa-database"></i>
+            <span>Knowledgebase</span>
+          </a>
+        </li>
+        
+    
+    </ul>
+
+
+        <div id="content-wrapper">
+        
+            <div class="container-fluid">
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    
+    <li class="breadcrumb-item">
+        <a href="/tickets/">Tickets</a>
+    </li>
+    
+        <li class="breadcrumb-item active">Overview</li>
+    
+
+                </ol>
+            
+                
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs">
+                <li class="nav-item" style="width: 200px;">
+                    Query Results:
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#datatabletabcontents" id="datatabletabcontents-tab" data-toggle="tab" role="tab" aria-controls="datatabletabcontents" aria-selected="true">
+                        <i class="fas fa-th-list"></i>
+                        Table
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#timelinetabcontents" id="timelinetabcontents-tab" data-toggle="tab" role="tab" aria-controls="timelinetabcontents" aria-selected="false">
+                        <i class="fas fa-history"></i>
+                        Timeline
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="datatabletabcontents" role="tabpanel" aria-labelledby="datatabletabcontents-tab">
+                    <form method="post" action="/tickets/update/" id="ticket_mass_update">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="0Pt3LHQKlCZl6itkM9g50rCcSNb8n8BVNFY192E8YC8Z3RI0X8iBdIHk4z80nrJt">
+                        <div id="ticketTable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="dataTables_length" id="ticketTable_length"><label>Show <select name="ticketTable_length" aria-controls="ticketTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><table class="table table-sm table-striped table-bordered table-hover dataTable no-footer" id="ticketTable" data-page-length="25" role="grid" style="width: 1593px;">
+                            <thead class="thead-light">
+                            <tr role="row"><th class="sorting_asc" rowspan="1" colspan="1" aria-label="" style="width: 21.2px;"></th><th class="sorting" tabindex="0" aria-controls="ticketTable" rowspan="1" colspan="1" aria-label="Ticket: activate to sort column ascending" style="width: 447.2px;">Ticket</th><th class="sorting" tabindex="0" aria-controls="ticketTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 123.2px;">Status</th><th class="sorting" tabindex="0" aria-controls="ticketTable" rowspan="1" colspan="1" aria-label="Created: activate to sort column ascending" style="width: 276.2px;">Created</th><th class="sorting" tabindex="0" aria-controls="ticketTable" rowspan="1" colspan="1" aria-label="Owner: activate to sort column ascending" style="width: 111.2px;">Owner</th><th class="sorting" tabindex="0" aria-controls="ticketTable" rowspan="1" colspan="1" aria-label="Submitter: activate to sort column ascending" style="width: 306.2px;">Submitter</th><th class="sorting" tabindex="0" aria-controls="ticketTable" rowspan="1" colspan="1" aria-label="KB item: activate to sort column ascending" style="width: 128.2px;">KB item</th></tr>
+                            </thead>
+                        <tbody><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="1" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/1/">1. Some django-helpdesk Problem</a></div></td><td>Open</td><td>9&nbsp;years, 5&nbsp;months ago</td><td></td><td>helpdesk@example.com</td><td></td></tr><tr role="row" class="even"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="2" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/2/">2. Something else</a></div></td><td>Open</td><td>9&nbsp;years, 5&nbsp;months ago</td><td></td><td>helpdesk@example.com</td><td></td></tr><tr class="danger odd" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="3" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/3/">3. Something with an attachment</a></div></td><td>Open</td><td>9&nbsp;years, 5&nbsp;months ago</td><td></td><td>helpdesk@example.com</td><td></td></tr><tr class="danger even" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="4" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/4/">4. wkcieffkpglfudprvinh</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="8" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/8/">8. tyarwhlafrgkggakjkul</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr role="row" class="even"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="10" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/10/">10. ofpkybsixussxlpxnbqq</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="11" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/11/">11. xrvfoqpzezqrgrosnvrk</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="warning even" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="17" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/17/">17. apqfvpryvbyvkkyjeyzs</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="18" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/18/">18. zzyayrlgwpsmxpmsbxzy</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="success even" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="20" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/20/">20. bjfasegvlfeqhqffowee</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="success odd" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="23" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/23/">23. gmjhinvfbshetihjaggx</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="success even" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="25" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/25/">25. obmdddnkmlboprdrcuay</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="danger odd" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="28" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/28/">28. ivudlyfcsjvuwlsjkchb</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="warning even" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="31" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/31/">31. dnlptprlcdyspeghkifi</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="warning odd" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="33" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/33/">33. vkucfstlytqvdwqebija</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="success even" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="36" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/36/">36. nibmajwnkibfegargypb</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="37" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/37/">37. fgsvhbkxwfimnypbhiqi</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="danger even" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="42" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/42/">42. dyqngyjvcrinmnucrjle</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr role="row" class="odd"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="43" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/43/">43. aaoyxshxyahpqkqfwxad</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="danger even" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="45" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/45/">45. zccqpgaxxjyjglyovsqm</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="danger odd" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="48" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/48/">48. sxsmsaznlojsmtptskgl</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="success even" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="51" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/51/">51. qjltaenmyouenkbkgxbw</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="success odd" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="52" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/52/">52. rrperuvaasrzreejwsyw</a></div></td><td>Reopened</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr role="row" class="even"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="55" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/55/">55. njcvajnltszbfgwptjzp</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr><tr class="danger odd" role="row"><td class="sorting_1"><input type="checkbox" name="ticket_id" value="57" class="ticket_multi_select"></td><td><div class="tickettitle"><a href="/tickets/57/">57. dxroptnaqipivrndxlpt</a></div></td><td>Open</td><td>5&nbsp;years ago</td><td></td><td></td><td></td></tr></tbody></table><div class="dt-buttons"><button class="dt-button buttons-collection buttons-colvis" tabindex="0" aria-controls="ticketTable" type="button" aria-haspopup="true" aria-expanded="false"><span>Column visibility</span></button> </div><div class="dataTables_paginate paging_simple_numbers" id="ticketTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="ticketTable_previous"><a href="#" aria-controls="ticketTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="ticketTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="ticketTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="ticketTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="ticketTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="ticketTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item disabled" id="ticketTable_ellipsis"><a href="#" aria-controls="ticketTable" data-dt-idx="6" tabindex="0" class="page-link">…</a></li><li class="paginate_button page-item "><a href="#" aria-controls="ticketTable" data-dt-idx="7" tabindex="0" class="page-link">341</a></li><li class="paginate_button page-item next" id="ticketTable_next"><a href="#" aria-controls="ticketTable" data-dt-idx="8" tabindex="0" class="page-link">Next</a></li></ul></div></div>
+
+                        <p>
+                            <label>Select:</label>
+
+                            <button id="select_all_btn" type="button" class="btn btn-primary btn-sm">
+                                <i class="fas fa-check-circle"></i> All
+                            </button>
+
+                            <button id="select_none_btn" type="button" class="btn btn-primary btn-sm">
+                                <i class="fas fa-times-circle"></i> None
+                            </button>
+
+                            <button id="select_inverse_btn" type="button" class="btn btn-primary btn-sm">
+                                <i class="fas fa-expand-arrows-alt"></i> Invert
+                            </button>
+                        </p>
+
+                        <p>
+                            <label for="id_mass_action">With Selected Tickets:</label>
+                            <select name="action" id="id_mass_action">
+                                <option value="take">Take (Assign to me)</option>
+                                <option value="delete">Delete</option>
+                                <option value="merge">Merge</option>
+                                <optgroup label="Close">
+                                    <option value="close">Close (Don't Send E-Mail)</option>
+                                    <option value="close_public">Close (Send E-Mail)</option>
+                                </optgroup>
+                                <optgroup label="Assign To">
+                                    <option value="unassign">Nobody (Unassign)</option>
+                                    
+                                        <option value="assign_1">admin</option>
+                                    
+                                </optgroup>
+                                <optgroup label="Set KB Item">
+                                    <option value="kbitem_none">No KB Item</option>
+                                    
+                                        <option value="kbitem_2">KB Cat 1: Contributing to django-helpdesk</option>
+                                    
+                                        <option value="kbitem_1">KB Cat 1: Django-Helpdesk</option>
+                                    
+                                        <option value="kbitem_3">KB Cat 2: Something Else</option>
+                                    
+                                </optgroup>
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fas fa-arrow-circle-right"></i> Go
+                            </button>
+                        </p>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="timelinetabcontents" role="tabpanel" aria-labelledby="timelinetabcontents-tab">
+                    <div id="timeline-embed" style="width: 100%; height: 80vh"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-hand-pointer"></i>
+            Query Selection
+        </div>
+        <div class="card-body">
+            <!-- start accordion -->
+            <div class="accordion" id="queryAccordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link btn-sm" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fas fa-filter"></i>
+                                Filters
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#queryAccordion">
+                        <div class="card-body">
+                            <form method="get">
+                                <div class="form-group float-right">
+                                    <label for="filterBuilderSelect">Add filter:</label>
+                                    <select class="custom-select custom-select-sm mb-0" aria-describedby="select-description" name="select" id="filterBuilderSelect" onchange="onFilterChange(this.value)">
+                                        <option value="">--</option>
+                                        <option id="filterBuilderSelect-Sort" value="Sort" disabled="">
+                                            Sorting
+                                        </option>
+                                        <option id="filterBuilderSelect-Owner" value="Owner">
+                                            Owner
+                                        </option>
+                                        <option id="filterBuilderSelect-Queue" value="Queue">
+                                            Queue
+                                        </option>
+                                        <option id="filterBuilderSelect-Status" value="Status" disabled="">
+                                            Status
+                                        </option>
+                                        <option id="filterBuilderSelect-Keywords" value="Keywords">
+                                            Keywords
+                                        </option>
+                                        <option id="filterBuilderSelect-Dates" value="Dates">
+                                            Date Range
+                                        </option>
+                                        <option id="filterBuilderSelect-KBItems" value="KBItems">
+                                            Knowledge base items
+                                        </option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+                        <form method="get">
+                            <ul class="list-group list-group-flush">
+                                <li id="filterBoxSort" class="filterBox filterBoxShow list-group-item">
+                                    
+
+  <div class="form-row">
+    <div class="col col-sm-3">
+      <label for="id_sort" class="col-form-label">Sorting:</label>
+    </div>
+    <div class="col col-sm-3">
+            <select id="id_sortx" name="sortx" class="">
+                <option value="created" selected="selected">
+                    Created
+                </option>
+                <option value="title">
+                    Title
+                </option>
+                <option value="queue">
+                    Queue
+                </option>
+                <option value="status">
+                    Status
+                </option>
+                <option value="priority">
+                    Priority
+                </option>
+                <option value="assigned_to">
+                    Owner
+                </option>
+            </select>
+  </div>
+  <div class="col col-sm-2">
+    <label for="id_sortreverse" class="col-form-label">Reverse</label>
+  </div>
+  <div class="col col-sm-3">
+    <input type="checkbox" name="sortreverse" id="id_sortreverse">
+  </div>
+  <div class="col col-sm-1">
+    <button class="filterBuilderRemove btn btn-danger btn-sm float-right"><i class="fas fa-trash-alt"></i></button>
+  </div>
+   <div class="form-row filterHelp">Ordering applied to tickets</div>
+</div>
+
+                                </li>
+                                <li class="filterBox list-group-item" id="filterBoxOwner">
+                                    
+
+
+<div class="form-row">
+    <div class="col col-sm-3">
+        <label for="id_owners" class="col-form-label">Owner(s):</label>
+    </div>
+    <div class="col col-sm-3">
+        <select id="id_owners" name="assigned_to" multiple="selected" size="5">
+            
+            <option value="-1">
+                Unassigned
+            </option>
+            
+            
+            <option value="1">
+                admin (ME)
+            </option>
+            
+        </select>
+    </div>
+  <div class="col col-sm-6">
+    <button class="filterBuilderRemove btn btn-danger btn-sm float-right"><i class="fas fa-trash-alt"></i></button>
+  </div>
+  <div class="form-row filterHelp">Ctrl-Click to select multiple options</div>
+</div>
+
+                                </li>
+                                <li class="list-group-item filterBox" id="filterBoxQueue">
+                                    
+
+
+<div class="form-row">
+    <div class="col col-sm-3">
+          <label for="id_queues">Queue(s):</label>
+    </div>
+    <div class="col col-sm-3">
+        <select id="id_queues" name="queue" multiple="selected" size="5">
+          
+            <option value="1">Django Helpdesk</option>
+            
+            <option value="2">Some Product</option>
+            
+        </select>
+    </div>
+  <div class="col col-sm-6">
+      <button class="filterBuilderRemove btn btn-danger btn-sm float-right"><i class="fas fa-trash-alt"></i></button>
+  </div>
+  <div class="form-row filterHelp">Ctrl-click to select multiple options</div>
+</div>
+
+
+                                </li>
+                                <li class="list-group-item filterBox filterBoxShow" id="filterBoxStatus">
+                                    
+
+
+<div class="form-row">
+    <div class="col col-sm-3">
+            <label for="id_statuses">Status(es):</label>
+    </div>
+    <div class="col col-sm-3">
+            <select id="id_statuses" name="status" multiple="selected" size="5"><option value="1" selected="selected">Open</option><option value="2" selected="selected">Reopened</option><option value="3">Resolved</option><option value="4">Closed</option><option value="5">Duplicate</option></select>
+    </div>
+  <div class="col col-sm-6">
+    <button class="filterBuilderRemove btn btn-danger btn-sm float-right"><i class="fas fa-trash-alt"></i></button>
+  </div>
+  <div class="form-row filterHelp">Ctrl-click to select multiple options</div>
+</div>
+
+                                </li>
+                                <li class="list-group-item filterBox" id="filterBoxDates">
+                                    
+<div class="form-row">
+    <div class="col col-sm-3">
+          <label for="id_date_from">Date (From)</label>
+    </div>
+    <div class="col col-sm-3">
+          <input type="text" name="date_from" value="" id="id_date_from">
+    </div>
+    <div class="col col-sm-2">
+          <label for="id_date_to">Date (To)</label>
+    </div>
+    <div class="col col-sm-3">
+          <input type="text" name="date_to" value="" id="id_date_to">
+    </div>
+  <div class="col col-sm-1">
+                        <button class="float-right filterBuilderRemove btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+    </div>
+
+                        <p class="filterHelp">Use YYYY-MM-DD date format, eg 2018-01-30</p>
+</div>
+
+                                </li>
+                                <li class="list-group-item filterBox" id="filterBoxKeywords">
+                                    
+<div class="form-row">
+    <div class="col col-sm-3">
+        <label for="id_query">Keywords</label>
+    </div>
+    <div class="col col-sm-3">
+        <input type="text" name="q" value="" id="id_query">
+    </div>
+    <div class="col col-sm-6">
+        <button class="filterBuilderRemove btn btn-danger btn-sm float-right"><i class="fas fa-trash-alt"></i></button>
+    </div>
+      <p class="filterHelp">Keywords are case-insensitive, and will be looked for pretty much everywhere possible. Prepend with 'queue:' or 'priority:' to search by queue or priority. You can also use the keyword OR to combine multiple searches.</p>
+</div>
+
+                                </li>
+                                <li class="list-group-item filterBox" id="filterBoxKBItems">
+                                    
+
+
+<div class="form-row">
+    <div class="col col-sm-3">
+        <label for="id_statuses">Knowledge base item(s):</label>
+    </div>
+    <div class="col col-sm-3">
+        <select id="id_kbitems" name="kbitem" multiple="selected" size="5">
+            
+            <option value="-1">
+                Uncategorized
+            </option>
+            
+            
+            <option value="2">KB Cat 1: Contributing to django-helpdesk</option>
+            
+            <option value="1">KB Cat 1: Django-Helpdesk</option>
+            
+            <option value="3">KB Cat 2: Something Else</option>
+            
+        </select>
+    </div>
+    <div class="col col-sm-6">
+        <button class="filterBuilderRemove btn btn-danger btn-sm float-right"><i class="fas fa-trash-alt"></i></button>
+    </div>
+    <div class="form-row filterHelp">Ctrl-click to select multiple options</div>
+</div>
+
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="btn btn-primary btn-sm" type="submit" value="Apply Filters">
+                                </li>
+                                
+                                
+                            </ul>
+                        </form>
+                    </div>
+                </div> <!-- end card -->
+
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed btn-sm" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="fas fa-save"></i>
+                                Save Query
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#queryAccordion">
+                        <div class="card-body">
+                            <form method="post" action="/save_query/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="0Pt3LHQKlCZl6itkM9g50rCcSNb8n8BVNFY192E8YC8Z3RI0X8iBdIHk4z80nrJt">
+                                <input type="hidden" name="query_encoded" value="eyJmaWx0ZXJpbmciOiB7InN0YXR1c19faW4iOiBbMSwgMl19LCAic29ydGluZyI6ICJjcmVhdGVkIiwgInNlYXJjaF9zdHJpbmciOiAiIiwgInNvcnRyZXZlcnNlIjogZmFsc2V9">
+                                <dl>
+                                    <dt><label for="id_title">Query Name</label></dt>
+                                    <dd><input type="text" name="title" id="id_title"></dd>
+                                    <dd class="form_help_text">This name appears in the drop-down list of saved queries. If you share your query, other users will see this name, so choose something clear and descriptive!</dd>
+
+                                    <dt><label for="id_shared">Shared?</label></dt>
+                                    <dd><input type="checkbox" name="shared" id="id_shared"> Yes, share this query with other users.
+                                    </dd>
+                                    <dd class="form_help_text">If you share this query, it will be visible by <em>all</em> other logged-in users.</dd>
+
+                                </dl>
+                                <div class="buttons">
+                                    <input class="btn btn-primary" type="submit" value="Save Query">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> <!-- end card -->
+
+                
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed btn-sm" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    Use Saved Query
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#queryAccordion">
+                            <div class="card-body">
+                                <form action="/tickets/">
+                                    <p>
+                                        <label for="id_query_selector">Query</label>
+                                        <select name="saved_query" id="id_query_selector">
+                                        
+                                            <option value="360">
+                                                some seacrh
+                                            </option>
+                                        
+                                            <option value="69">
+                                                имя
+                                            </option>
+                                        
+                                            <option value="83">
+                                                test
+                                            </option>
+                                        
+                                            <option value="84">
+                                                test
+                                            </option>
+                                        
+                                            <option value="100">
+                                                test_query
+                                            </option>
+                                        
+                                            <option value="101">
+                                                test_query
+                                            </option>
+                                        
+                                            <option value="102">
+                                                ошибка
+                                            </option>
+                                        
+                                            <option value="103">
+                                                test query name
+                                            </option>
+                                        
+                                            <option value="104">
+                                                Пуушу
+                                            </option>
+                                        
+                                            <option value="105">
+                                                Пушшу2
+                                            </option>
+                                        
+                                            <option value="106">
+                                                поисковой запрос
+                                            </option>
+                                        
+                                            <option value="107">
+                                                query_name_test
+                                            </option>
+                                        
+                                            <option value="108">
+                                                Тест
+                                            </option>
+                                        
+                                            <option value="109">
+                                                123
+                                            </option>
+                                        
+                                            <option value="110">
+                                                Сохранено
+                                            </option>
+                                        
+                                            <option value="111">
+                                                1114444
+                                                    (Shared)
+                                                
+                                            </option>
+                                        
+                                            <option value="112">
+                                                1241414
+                                            </option>
+                                        
+                                            <option value="114">
+                                                Something else
+                                            </option>
+                                        
+                                            <option value="115">
+                                                something
+                                            </option>
+                                        
+                                            <option value="116">
+                                                something
+                                            </option>
+                                        
+                                            <option value="117">
+                                                something
+                                            </option>
+                                        
+                                            <option value="118">
+                                                something
+                                            </option>
+                                        
+                                            <option value="119">
+                                                2
+                                            </option>
+                                        
+                                            <option value="120">
+                                                something
+                                            </option>
+                                        
+                                            <option value="121">
+                                                something
+                                            </option>
+                                        
+                                            <option value="122">
+                                                something
+                                            </option>
+                                        
+                                            <option value="123">
+                                                something
+                                            </option>
+                                        
+                                            <option value="124">
+                                                something
+                                            </option>
+                                        
+                                            <option value="125">
+                                                something
+                                            </option>
+                                        
+                                            <option value="126">
+                                                something
+                                            </option>
+                                        
+                                            <option value="127">
+                                                bobobobo
+                                            </option>
+                                        
+                                            <option value="128">
+                                                TITLECLOSED
+                                            </option>
+                                        
+                                            <option value="129">
+                                                ereeerererer
+                                            </option>
+                                        
+                                            <option value="130">
+                                                allfilters
+                                            </option>
+                                        
+                                            <option value="131">
+                                                asdf
+                                            </option>
+                                        
+                                            <option value="132">
+                                                test saving search query aFhelKdjdwlsJDLsh3
+                                            </option>
+                                        
+                                            <option value="133">
+                                                pKdufnYASd
+                                            </option>
+                                        
+                                            <option value="134">
+                                                pKdufnYASd
+                                            </option>
+                                        
+                                            <option value="135">
+                                                ApKdufnYASd
+                                            </option>
+                                        
+                                            <option value="136">
+                                                BApKdufnYASd
+                                            </option>
+                                        
+                                            <option value="137">
+                                                BApKdufnYASd
+                                            </option>
+                                        
+                                            <option value="138">
+                                                GHpKdufnYASd
+                                            </option>
+                                        
+                                            <option value="140">
+                                                XDFpKdufnYASd
+                                            </option>
+                                        
+                                            <option value="143">
+                                                XDFpKdufnYASd
+                                            </option>
+                                        
+                                            <option value="144">
+                                                XDFpKdufnYASd
+                                            </option>
+                                        
+                                            <option value="149">
+                                                1
+                                            </option>
+                                        
+                                            <option value="150">
+                                                Фывапролджэ
+                                                    (Shared)
+                                                
+                                            </option>
+                                        
+                                            <option value="151">
+                                                Фывапролджэ
+                                            </option>
+                                        
+                                            <option value="152">
+                                                13453456365
+                                            </option>
+                                        
+                                            <option value="153">
+                                                Фывапролджэ saved query
+                                            </option>
+                                        
+                                            <option value="154">
+                                                Фывапролджэ saved query fdggfhgjfhjryjryj
+                                            </option>
+                                        
+                                            <option value="155">
+                                                Фывапролджэ saved query fdggfhgjfhjryjryj
+                                            </option>
+                                        
+                                            <option value="156">
+                                                Фывапролджэ saved query fdggfhgjfhjryjryj
+                                            </option>
+                                        
+                                            <option value="157">
+                                                Фывапролджэ saved query fdggfhgjfhjryjryj
+                                            </option>
+                                        
+                                            <option value="158">
+                                                Фывапролджэ saved query fdggfhgjfhjryjryj
+                                            </option>
+                                        
+                                            <option value="159">
+                                                вркльтрзкьтэькнэзньэзвн
+                                            </option>
+                                        
+                                            <option value="160">
+                                                мой поиск
+                                            </option>
+                                        
+                                            <option value="161">
+                                                test001100
+                                            </option>
+                                        
+                                            <option value="162">
+                                                ЩЬФбб
+                                            </option>
+                                        
+                                            <option value="163">
+                                                БФТИЕ
+                                            </option>
+                                        
+                                            <option value="164">
+                                                аПКПЖ
+                                            </option>
+                                        
+                                            <option value="165">
+                                                МДЮНМ
+                                            </option>
+                                        
+                                            <option value="166">
+                                                ЩЫФбК
+                                            </option>
+                                        
+                                            <option value="167">
+                                                бЯЫУП
+                                            </option>
+                                        
+                                            <option value="168">
+                                                ЭОМРа
+                                            </option>
+                                        
+                                            <option value="169">
+                                                ДРЮВЙ
+                                            </option>
+                                        
+                                            <option value="170">
+                                                ЩЧЦбЦ
+                                            </option>
+                                        
+                                            <option value="171">
+                                                МаЖЫФ
+                                            </option>
+                                        
+                                            <option value="172">
+                                                АННбБ
+                                            </option>
+                                        
+                                            <option value="173">
+                                                запросзапрос123
+                                            </option>
+                                        
+                                            <option value="174">
+                                                9898
+                                            </option>
+                                        
+                                            <option value="175">
+                                                запросзапрос
+                                            </option>
+                                        
+                                            <option value="176">
+                                                0000
+                                            </option>
+                                        
+                                            <option value="177">
+                                                98765
+                                            </option>
+                                        
+                                            <option value="178">
+                                                ТестЗапрос123451
+                                            </option>
+                                        
+                                            <option value="179">
+                                                ТестЗапрос123451
+                                            </option>
+                                        
+                                            <option value="180">
+                                                ТестЗапрос123451
+                                            </option>
+                                        
+                                            <option value="181">
+                                                ТестЗапрос123451
+                                            </option>
+                                        
+                                            <option value="182">
+                                                ТестЗапрос123451
+                                            </option>
+                                        
+                                            <option value="183">
+                                                ТестЗапрос111
+                                            </option>
+                                        
+                                            <option value="184">
+                                                111
+                                            </option>
+                                        
+                                            <option value="317">
+                                                Автотест Поиск 2026
+                                            </option>
+                                        
+                                            <option value="319">
+                                                Автотест Поиск 2026
+                                            </option>
+                                        
+                                            <option value="321">
+                                                Сохр. поисковый запр. 123
+                                            </option>
+                                        
+                                            <option value="193">
+                                                1234567890
+                                            </option>
+                                        
+                                            <option value="194">
+                                                1234567890
+                                            </option>
+                                        
+                                            <option value="195">
+                                                1234567890
+                                            </option>
+                                        
+                                            <option value="196">
+                                                1234567890
+                                            </option>
+                                        
+                                            <option value="197">
+                                                1234567890
+                                            </option>
+                                        
+                                            <option value="198">
+                                                имя запроса 1
+                                            </option>
+                                        
+                                            <option value="199">
+                                                rrrrrrt
+                                            </option>
+                                        
+                                            <option value="201">
+                                                123
+                                            </option>
+                                        
+                                            <option value="202">
+                                                ВЬУСАЩТВМЕУЖ
+                                            </option>
+                                        
+                                            <option value="203">
+                                                БУЙВНИИЦЧУЕЖ
+                                            </option>
+                                        
+                                            <option value="204">
+                                                РЯПШУЦОЪбФСб
+                                            </option>
+                                        
+                                            <option value="205">
+                                                ОМШДПНаВОГМФ
+                                            </option>
+                                        
+                                            <option value="206">
+                                                ЫХРЩРВГМУБЪЦ
+                                            </option>
+                                        
+                                            <option value="207">
+                                                ОбЭОбБЪЪЙЬДУ
+                                            </option>
+                                        
+                                            <option value="208">
+                                                ХЯДЯЗОТЯФЩЮР
+                                            </option>
+                                        
+                                            <option value="209">
+                                                МВЗбаАХФОЯИТ
+                                            </option>
+                                        
+                                            <option value="211">
+                                                rrrrrrrrrrrrrrrrrr
+                                            </option>
+                                        
+                                            <option value="212">
+                                                ЫМУЙЛХШ
+                                            </option>
+                                        
+                                            <option value="213">
+                                                аВНЖОКЖ
+                                            </option>
+                                        
+                                            <option value="214">
+                                                testQuery
+                                            </option>
+                                        
+                                            <option value="215">
+                                                ЩВ65Эа
+                                            </option>
+                                        
+                                            <option value="216">
+                                                аК45ЦЛ
+                                            </option>
+                                        
+                                            <option value="217">
+                                                190
+                                            </option>
+                                        
+                                            <option value="218">
+                                                191
+                                            </option>
+                                        
+                                            <option value="219">
+                                                testQuery
+                                            </option>
+                                        
+                                            <option value="220">
+                                                СЖ68ЗЯ
+                                            </option>
+                                        
+                                            <option value="221">
+                                                ОИ11бД
+                                            </option>
+                                        
+                                            <option value="222">
+                                                МЩ77Шб
+                                            </option>
+                                        
+                                            <option value="223">
+                                                ТБ64ЮМ
+                                            </option>
+                                        
+                                            <option value="224">
+                                                ПЕ63ЫЮ
+                                            </option>
+                                        
+                                            <option value="225">
+                                                ЕЫ28ПК
+                                            </option>
+                                        
+                                            <option value="226">
+                                                впвап
+                                            </option>
+                                        
+                                            <option value="227">
+                                                тест
+                                            </option>
+                                        
+                                            <option value="228">
+                                                поисковой запрос
+                                            </option>
+                                        
+                                            <option value="229">
+                                                поисковой запрос
+                                            </option>
+                                        
+                                            <option value="230">
+                                                Test_Tiket_
+                                                    (Shared)
+                                                
+                                            </option>
+                                        
+                                            <option value="231">
+                                                Test_Tiket_2
+                                                    (Shared)
+                                                
+                                            </option>
+                                        
+                                            <option value="232">
+                                                TestZapros
+                                                    (Shared)
+                                                
+                                            </option>
+                                        
+                                            <option value="233">
+                                                TestZapros
+                                                    (Shared)
+                                                
+                                            </option>
+                                        
+                                            <option value="234">
+                                                TestZapros
+                                                    (Shared)
+                                                
+                                            </option>
+                                        
+                                            <option value="235">
+                                                UI Saved Query Example
+                                            </option>
+                                        
+                                            <option value="236">
+                                                UI Saved Query Example
+                                            </option>
+                                        
+                                            <option value="237">
+                                                nt556667
+                                            </option>
+                                        
+                                            <option value="238">
+                                                Queryokfov716
+                                            </option>
+                                        
+                                            <option value="239">
+                                                Queryhuqkz395
+                                            </option>
+                                        
+                                            <option value="240">
+                                                Queryvqnqp726
+                                            </option>
+                                        
+                                            <option value="241">
+                                                Querypuwtl388
+                                            </option>
+                                        
+                                            <option value="242">
+                                                Querylhdtu481
+                                            </option>
+                                        
+                                            <option value="243">
+                                                some name
+                                            </option>
+                                        
+                                            <option value="244">
+                                                some
+                                            </option>
+                                        
+                                            <option value="315">
+                                                Мой супер поиск 123
+                                            </option>
+                                        
+                                            <option value="249">
+                                                Тестовый запрос ЭГСЗЧЭ3065
+                                            </option>
+                                        
+                                            <option value="250">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="251">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="252">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="253">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="254">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="255">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="256">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="257">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="258">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="259">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="260">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="261">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="262">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="263">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="264">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="265">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="266">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="267">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="268">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="269">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="270">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="271">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="272">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="273">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="274">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="275">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="276">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="277">
+                                                Мой сохранённый запрос
+                                            </option>
+                                        
+                                            <option value="278">
+                                                МШШЩММЮО
+                                            </option>
+                                        
+                                            <option value="279">
+                                                РЧЛМОМХЫ
+                                            </option>
+                                        
+                                            <option value="280">
+                                                addhdhddjdfhbvjvhv
+                                            </option>
+                                        
+                                            <option value="281">
+                                                addhdhddjdfhbvjvhv
+                                            </option>
+                                        
+                                            <option value="283">
+                                                ЭЖЗЦЯ012
+                                            </option>
+                                        
+                                            <option value="285">
+                                                q1122
+                                            </option>
+                                        
+                                            <option value="286">
+                                                ГЧЫЙХ857
+                                            </option>
+                                        
+                                            <option value="287">
+                                                поисковый запрос 13
+                                            </option>
+                                        
+                                            <option value="288">
+                                                поисковый запрос 13
+                                            </option>
+                                        
+                                            <option value="289">
+                                                поисковый запрос 131
+                                            </option>
+                                        
+                                            <option value="290">
+                                                поисковый запрос 333
+                                            </option>
+                                        
+                                            <option value="291">
+                                                поисковый запрос 333
+                                            </option>
+                                        
+                                            <option value="292">
+                                                поисковый запрос 333
+                                            </option>
+                                        
+                                            <option value="293">
+                                                поисковый запрос 333
+                                            </option>
+                                        
+                                            <option value="316">
+                                                Запрос1
+                                            </option>
+                                        
+                                            <option value="318">
+                                                Автотест Поиск 2026
+                                            </option>
+                                        
+                                            <option value="320">
+                                                Автотест Поиск 2026
+                                            </option>
+                                        
+                                            <option value="341">
+                                                ываац33в2всв34ке
+                                            </option>
+                                        
+                                            <option value="353">
+                                                поисковой запрос
+                                            </option>
+                                        
+                                            <option value="355">
+                                                Запрос для UI теста 1234
+                                            </option>
+                                        
+                                            <option value="356">
+                                                Тикет поиск запр111
+                                            </option>
+                                        
+                                            <option value="357">
+                                                Мои задачи
+                                            </option>
+                                        
+                                            <option value="358">
+                                                поиск по поиску
+                                                    (Shared)
+                                                
+                                            </option>
+                                        
+                                            <option value="359">
+                                                some seacrh
+                                                    (Shared)
+                                                
+                                            </option>
+                                        
+                                            <option value="361">
+                                                тест для задания cucumber
+                                            </option>
+                                        
+                                            <option value="362">
+                                                тест для задания cucumber
+                                            </option>
+                                        
+                                            <option value="363">
+                                                тест для задания cucumber
+                                            </option>
+                                        
+                                            <option value="364">
+                                                тест для задания cucumber
+                                            </option>
+                                        
+                                            <option value="365">
+                                                тест для задания cucumber
+                                            </option>
+                                        
+                                            <option value="366">
+                                                тест для задания cucumber
+                                            </option>
+                                        
+                                            <option value="367">
+                                                тест для задания cucumber
+                                            </option>
+                                        
+                                            <option value="368">
+                                                тест для задания cucumber
+                                            </option>
+                                        
+                                            <option value="369">
+                                                тест для задания cucumber
+                                            </option>
+                                        
+                                            <option value="370">
+                                                testQuery
+                                            </option>
+                                        
+                                            <option value="378">
+                                                ischTest2
+                                            </option>
+                                        
+                                            <option value="379">
+                                                ischTestSearch1
+                                            </option>
+                                        
+                                            <option value="380">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="381">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="394">
+                                                тест
+                                            </option>
+                                        
+                                            <option value="382">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="383">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="384">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="385">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="386">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="387">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="388">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="389">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="390">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="391">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="392">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                            <option value="393">
+                                                ischTestSearch11
+                                            </option>
+                                        
+                                    </select></p>
+                                    <input class="btn btn-primary" type="submit" value="Run Query">
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- end card -->
+                
+            </div>
+            <!-- end accordion -->
+        </div>
+        <!-- end card-body -->
+    </div>
+    <!-- end top card -->
+
+
+            
+            </div>
+            <!-- /.container-fluid -->
+        
+            
+<!-- Sticky Footer -->
+<footer class="sticky-footer">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Powered by <a href="https://github.com/django-helpdesk/django-helpdesk">django-helpdesk</a>.</span>
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+            
+
+
+    
+    <script src="/static/helpdesk/filter.js"></script>
+    <!-- Timeline 3 JavaScript -->
+    
+    <script src="/static/helpdesk/vendor/timeline3/js/timeline.js"></script>
+    
+    <script>
+        function get_url(row) {
+            return "/tickets/1234/".replace(/1234/, row.id.toString());
+        }
+
+        $(document).ready(function () {
+            // Ticket DataTable Initialization
+            $('#ticketTable').DataTable({
+                language: {
+                    "emptyTable": "No Tickets Match Your Selection"
+                },
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    "url": "/datatables_ticket_list/eyJmaWx0ZXJpbmciOiB7InN0YXR1c19faW4iOiBbMSwgMl19LCAic29ydGluZyI6ICJjcmVhdGVkIiwgInNlYXJjaF9zdHJpbmciOiAiIiwgInNvcnRyZXZlcnNlIjogZmFsc2V9",
+                    "type": "GET",
+                },
+                createdRow: function (row, data, dataIndex) {
+                    $(row).addClass(data.row_class);
+                },
+                dom: 'ltBp',
+                buttons: ["colvis"],
+                columns: [
+                    {
+                        data: "id",
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+                            const pk = data;
+                            if (type === 'display') {
+                                data = "<input type='checkbox' name='ticket_id' value='" + pk + "' class='ticket_multi_select' />"
+                            }
+                            return data
+                        }
+                    },
+                    {
+                        data: "ticket",
+                        render: function (data, type, row, meta) {
+                            if (type === 'display') {
+                                data = '<div class="tickettitle"><a href="' + get_url(row) + '" >' +
+                                    row.id + '. ' +
+                                    row.title + '</a></div>';
+                            }
+                            return data
+                        }
+                    },
+                    {
+                        data: "priority",
+                        render: function (data, type, row, meta) {
+                            let priority = "success";
+                            if (data === 4) {
+                                priority = "warning";
+                            } else if (data === 5) {
+                                priority = "danger";
+                            }
+                            return '<p class="text-' + priority + '">' + data + '</p>';
+                        },
+                        visible: false,
+                    },
+                    {
+                        data: "queue",
+                        render: function (data, type, row, meta) {
+                            return data.title;
+                        },
+                        visible: false,
+                    },
+                    {data: "status"},
+                    {data: "created"},
+                    {data: "due_date", "visible": false},
+                    {
+                        data: "assigned_to",
+                        render: function (data, type, row, meta) {
+                            if (data !== "None") {
+                                return data;
+                            }
+                            return "";
+                        }
+                    },
+                    {data: "submitter"},
+                    {data: "time_spent", "visible": false},
+                    {data: "kbitem"},
+                ]
+            });
+
+            
+            // The TL.Timeline constructor takes at least two arguments:
+            // the id of the Timeline container (no '#'), and
+            // the URL to your JSON data file or Google spreadsheet.
+            // the id must refer to an element "above" this code,
+            // and the element must have CSS styling to give it width and height
+            // optionally, a third argument with configuration options can be passed.
+            // See below for more about options.
+            let timeline_loaded = false;
+            $('#timelinetabcontents-tab').on('shown.bs.tab', function (e) {
+                if (!timeline_loaded) {
+                    new TL.Timeline(
+                        'timeline-embed',
+                        '/timeline_ticket_list/eyJmaWx0ZXJpbmciOiB7InN0YXR1c19faW4iOiBbMSwgMl19LCAic29ydGluZyI6ICJjcmVhdGVkIiwgInNlYXJjaF9zdHJpbmciOiAiIiwgInNvcnRyZXZlcnNlIjogZmFsc2V9'
+                    );
+                    timeline_loaded = true;
+                }
+            });
+
+            
+            $("#select_all_btn").click(function () {
+                $(".ticket_multi_select").prop('checked', true);
+            });
+            $("#select_none_btn").click(function () {
+                $(".ticket_multi_select").prop('checked', false);
+            });
+            $("#select_inverse_btn").click(function () {
+                $(".ticket_multi_select").each(function () {
+                    $(this).prop('checked', !$(this).prop('checked'));
+                });
+            });
+        })
+    </script>
+
+
+
+
+
+
+</body></html>

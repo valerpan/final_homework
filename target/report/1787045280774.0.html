@@ -1,0 +1,2283 @@
+<html lang="en"><head>
+
+    
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Helpdesk :: Powered by django-helpdesk</title>
+
+
+<!-- Bootstrap Core CSS -->
+
+<link href="/static/helpdesk/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+<!-- Font Awesome -->
+<link href="/static/helpdesk/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+<!-- DataTables CSS-->
+<link href="/static/helpdesk/vendor/datatables/css/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="/static/helpdesk/vendor/datatables/css/buttons.dataTables.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="/static/helpdesk/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+<!-- Morris Charts CSS -->
+
+<link href="/static/helpdesk/vendor/morrisjs/morris.css" rel="stylesheet">
+
+
+<!-- Custom CSS -->
+<link href="/static/helpdesk/css/sb-admin.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/helpdesk/helpdesk-extend.css" type="text/css" media="screen">
+
+
+<!-- RSS -->
+<link rel="alternate" href="/rss/user/admin/" type="application/rss+xml" title="My Open Tickets">
+<link rel="alternate" href="/rss/recent_activity/" type="application/rss+xml" title="All Recent Activity">
+<link rel="alternate" href="/rss/unassigned/" type="application/rss+xml" title="Unassigned Tickets">
+
+<style type="text/css">
+/* hide google translate top bar */
+.goog-te-banner-frame {display: none !important;}
+.goog-te-balloon-frame {display: none !important;}
+/* hide google translate tooltips (generated for every translated item) */
+.goog-tooltip {display: none !important; }
+</style>
+
+<style type="text/css">
+/* header */
+#dropdown li.headerlink { width: auto; float: left; text-align: center; }
+
+/* query list */
+#dropdown li.headerlink ul {    display: none;
+                                text-align: left;
+                                position: absolute;
+                                padding: 5px;
+                                z-index: 2; }
+/* query entries */
+#dropdown li.headerlink:hover ul { display: block; width: auto; }
+#dropdown li.headerlink:hover ul li { padding: 5px; margin: 1px; float: none; display: block; }
+</style>
+
+
+
+
+    
+
+    
+<!-- jQuery and Bootstrap Core -->
+
+<script src="/static/helpdesk/vendor/jquery/jquery.min.js"></script>
+<script src="/static/helpdesk/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Core plugin JavaScript-->
+<script src="/static/helpdesk/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="/static/helpdesk/vendor/chart.js/Chart.min.js"></script><style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+<script src="/static/helpdesk/vendor/datatables/js/jquery.dataTables.js"></script>
+<script src="/static/helpdesk/vendor/datatables/js/dataTables.bootstrap4.js"></script>
+<script src="/static/helpdesk/vendor/datatables/js/dataTables.buttons.js"></script>
+<script src="/static/helpdesk/vendor/datatables/js/buttons.colVis.js"></script>
+
+<!-- jQuery UI DatePicker -->
+<script src="/static/helpdesk/vendor/jquery-ui/jquery-ui.min.js" type="text/javascript" language="javascript"></script>
+<link href="/static/helpdesk/vendor/jquery-ui/jquery-ui.css" rel="stylesheet">
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/static/helpdesk/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/static/helpdesk/js/sb-admin.js"></script>
+
+
+
+
+
+</head>
+
+<body id="bg-dark">
+
+    
+
+    
+
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand" href="/">Helpdesk</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0 mr-auto" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      
+      <!-- Navbar Search -->
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" id="searchform" method="get" action="/tickets/">
+        <div class="input-group">
+          <input type="text" class="form-control" name="q" size="15" placeholder="Search..." id="search_query" title="Enter a keyword, or a ticket number to jump straight to that ticket." aria-label="Search" aria-describedby="basic-addon2">
+          <input type="hidden" name="status" value="1"><input type="hidden" name="status" value="2"><input type="hidden" name="status" value="3"><input type="hidden" name="search_type" value="header">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-search"></i> Go
+            </button>
+          </div>
+        </div>
+        <input type="hidden" name="csrfmiddlewaretoken" value="mWBLmyoBX0mgMJ9ANgiEP08KqXxDgsZGhGoklKB1aTJ3ga6L29FabM4ywspjR6H3">
+      </form>
+      
+      <!-- Navbar -->
+      <ul class="navbar-nav mr-md-0">
+      
+        
+        <li class="nav-item dropdown no-arrow mx-1">
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=360">some seacrh
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=69">имя
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=83">test
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=84">test
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=100">test_query
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=101">test_query
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=102">ошибка
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=103">test query name
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=104">Пуушу
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=105">Пушшу2
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=106">поисковой запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=107">query_name_test
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=108">Тест
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=109">123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=110">Сохранено
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=111">1114444
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=112">1241414
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=114">Something else
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=115">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=116">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=117">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=118">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=119">2
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=120">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=121">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=122">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=123">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=124">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=125">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=126">something
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=127">bobobobo
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=128">TITLECLOSED
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=129">ereeerererer
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=130">allfilters
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=131">asdf
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=132">test saving search query aFhelKdjdwlsJDLsh3
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=133">pKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=134">pKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=135">ApKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=136">BApKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=137">BApKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=138">GHpKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=140">XDFpKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=143">XDFpKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=144">XDFpKdufnYASd
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=149">1
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=150">Фывапролджэ
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=151">Фывапролджэ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=152">13453456365
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=153">Фывапролджэ saved query
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=154">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=155">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=156">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=157">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=158">Фывапролджэ saved query fdggfhgjfhjryjryj
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=159">вркльтрзкьтэькнэзньэзвн
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=160">мой поиск
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=161">test001100
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=162">ЩЬФбб
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=163">БФТИЕ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=164">аПКПЖ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=165">МДЮНМ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=166">ЩЫФбК
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=167">бЯЫУП
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=168">ЭОМРа
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=169">ДРЮВЙ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=170">ЩЧЦбЦ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=171">МаЖЫФ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=172">АННбБ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=173">запросзапрос123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=174">9898
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=175">запросзапрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=176">0000
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=177">98765
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=178">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=179">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=180">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=181">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=182">ТестЗапрос123451
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=183">ТестЗапрос111
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=184">111
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=317">Автотест Поиск 2026
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=319">Автотест Поиск 2026
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=321">Сохр. поисковый запр. 123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=193">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=194">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=195">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=196">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=197">1234567890
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=198">имя запроса 1
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=199">rrrrrrt
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=201">123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=202">ВЬУСАЩТВМЕУЖ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=203">БУЙВНИИЦЧУЕЖ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=204">РЯПШУЦОЪбФСб
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=205">ОМШДПНаВОГМФ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=206">ЫХРЩРВГМУБЪЦ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=207">ОбЭОбБЪЪЙЬДУ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=208">ХЯДЯЗОТЯФЩЮР
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=209">МВЗбаАХФОЯИТ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=211">rrrrrrrrrrrrrrrrrr
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=212">ЫМУЙЛХШ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=213">аВНЖОКЖ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=214">testQuery
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=215">ЩВ65Эа
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=216">аК45ЦЛ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=217">190
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=218">191
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=219">testQuery
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=220">СЖ68ЗЯ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=221">ОИ11бД
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=222">МЩ77Шб
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=223">ТБ64ЮМ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=224">ПЕ63ЫЮ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=225">ЕЫ28ПК
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=226">впвап
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=227">тест
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=228">поисковой запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=229">поисковой запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=230">Test_Tiket_
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=231">Test_Tiket_2
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=232">TestZapros
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=233">TestZapros
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=234">TestZapros
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=235">UI Saved Query Example
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=236">UI Saved Query Example
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=237">nt556667
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=238">Queryokfov716
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=239">Queryhuqkz395
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=240">Queryvqnqp726
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=241">Querypuwtl388
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=242">Querylhdtu481
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=243">some name
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=244">some
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=315">Мой супер поиск 123
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=249">Тестовый запрос ЭГСЗЧЭ3065
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=250">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=251">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=252">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=253">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=254">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=255">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=256">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=257">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=258">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=259">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=260">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=261">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=262">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=263">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=264">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=265">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=266">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=267">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=268">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=269">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=270">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=271">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=272">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=273">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=274">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=275">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=276">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=277">Мой сохранённый запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=278">МШШЩММЮО
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=279">РЧЛМОМХЫ
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=280">addhdhddjdfhbvjvhv
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=281">addhdhddjdfhbvjvhv
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=283">ЭЖЗЦЯ012
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=285">q1122
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=286">ГЧЫЙХ857
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=287">поисковый запрос 13
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=288">поисковый запрос 13
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=289">поисковый запрос 131
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=290">поисковый запрос 333
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=291">поисковый запрос 333
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=292">поисковый запрос 333
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=293">поисковый запрос 333
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=316">Запрос1
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=318">Автотест Поиск 2026
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=320">Автотест Поиск 2026
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=341">ываац33в2всв34ке
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=353">поисковой запрос
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=355">Запрос для UI теста 1234
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=356">Тикет поиск запр111
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=357">Мои задачи
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=358">поиск по поиску
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=359">some seacrh
+                    
+                    (Shared)
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=361">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=362">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=363">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=364">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=365">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=366">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=367">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=368">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=369">тест для задания cucumber
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=370">testQuery
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=378">ischTest2
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=379">ischTestSearch1
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=380">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=381">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=394">тест
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=382">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=383">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=384">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=385">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=386">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=387">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=388">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=389">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=390">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=391">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=392">ischTestSearch11
+                    
+                </a>
+            
+                <a class="dropdown-item" href="/tickets/?saved_query=393">ischTestSearch11
+                    
+                </a>
+            
+          </div>
+        </li>
+        
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle fa-fw"></i>
+            admin
+            <i class="fas fa-caret-down fa-fw"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="/settings/"><i class="fas fa-fw fa-user-cog"></i> User Settings</a>
+            <a class="dropdown-item" href="/rss/"><i class="fas fa-fw fa-rss-square"></i> RSS Feeds</a>
+            
+            <a class="dropdown-item" href="/password_change/"><i class="fas fa-fw fa-user-secret"></i> Change password</a>
+            
+            <div class="dropdown-divider"></div>
+            
+            <a class="dropdown-item" href="/system_settings/"><i class="fas fa-fw fa-cogs"></i> System Settings</a>
+            <div class="dropdown-divider"></div>
+            
+            <a class="dropdown-item" href="/logout/"><i class="fas fa-fw fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </li>
+      
+      </ul>
+
+    </nav>
+
+
+    <div id="wrapper">
+        
+
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav">
+    
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard/">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tickets/">
+            <i class="fas fa-fw fa-tasks"></i>
+            <span>All Tickets</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="ticketsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-search"></i>
+            <span>Saved Queries</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="ticketsDropdown">
+            
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=360">some seacrh
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=69">имя
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=83">test
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=84">test
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=100">test_query
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=101">test_query
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=102">ошибка
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=103">test query name
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=104">Пуушу
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=105">Пушшу2
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=106">поисковой запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=107">query_name_test
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=108">Тест
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=109">123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=110">Сохранено
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=111">1114444
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=112">1241414
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=114">Something else
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=115">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=116">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=117">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=118">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=119">2
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=120">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=121">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=122">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=123">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=124">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=125">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=126">something
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=127">bobobobo
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=128">TITLECLOSED
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=129">ereeerererer
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=130">allfilters
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=131">asdf
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=132">test saving search query aFhelKdjdwlsJDLsh3
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=133">pKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=134">pKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=135">ApKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=136">BApKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=137">BApKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=138">GHpKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=140">XDFpKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=143">XDFpKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=144">XDFpKdufnYASd
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=149">1
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=150">Фывапролджэ
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=151">Фывапролджэ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=152">13453456365
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=153">Фывапролджэ saved query
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=154">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=155">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=156">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=157">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=158">Фывапролджэ saved query fdggfhgjfhjryjryj
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=159">вркльтрзкьтэькнэзньэзвн
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=160">мой поиск
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=161">test001100
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=162">ЩЬФбб
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=163">БФТИЕ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=164">аПКПЖ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=165">МДЮНМ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=166">ЩЫФбК
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=167">бЯЫУП
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=168">ЭОМРа
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=169">ДРЮВЙ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=170">ЩЧЦбЦ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=171">МаЖЫФ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=172">АННбБ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=173">запросзапрос123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=174">9898
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=175">запросзапрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=176">0000
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=177">98765
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=178">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=179">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=180">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=181">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=182">ТестЗапрос123451
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=183">ТестЗапрос111
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=184">111
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=317">Автотест Поиск 2026
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=319">Автотест Поиск 2026
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=321">Сохр. поисковый запр. 123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=193">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=194">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=195">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=196">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=197">1234567890
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=198">имя запроса 1
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=199">rrrrrrt
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=201">123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=202">ВЬУСАЩТВМЕУЖ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=203">БУЙВНИИЦЧУЕЖ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=204">РЯПШУЦОЪбФСб
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=205">ОМШДПНаВОГМФ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=206">ЫХРЩРВГМУБЪЦ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=207">ОбЭОбБЪЪЙЬДУ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=208">ХЯДЯЗОТЯФЩЮР
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=209">МВЗбаАХФОЯИТ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=211">rrrrrrrrrrrrrrrrrr
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=212">ЫМУЙЛХШ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=213">аВНЖОКЖ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=214">testQuery
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=215">ЩВ65Эа
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=216">аК45ЦЛ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=217">190
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=218">191
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=219">testQuery
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=220">СЖ68ЗЯ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=221">ОИ11бД
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=222">МЩ77Шб
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=223">ТБ64ЮМ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=224">ПЕ63ЫЮ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=225">ЕЫ28ПК
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=226">впвап
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=227">тест
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=228">поисковой запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=229">поисковой запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=230">Test_Tiket_
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=231">Test_Tiket_2
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=232">TestZapros
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=233">TestZapros
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=234">TestZapros
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=235">UI Saved Query Example
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=236">UI Saved Query Example
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=237">nt556667
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=238">Queryokfov716
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=239">Queryhuqkz395
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=240">Queryvqnqp726
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=241">Querypuwtl388
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=242">Querylhdtu481
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=243">some name
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=244">some
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=315">Мой супер поиск 123
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=249">Тестовый запрос ЭГСЗЧЭ3065
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=250">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=251">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=252">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=253">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=254">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=255">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=256">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=257">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=258">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=259">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=260">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=261">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=262">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=263">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=264">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=265">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=266">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=267">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=268">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=269">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=270">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=271">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=272">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=273">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=274">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=275">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=276">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=277">Мой сохранённый запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=278">МШШЩММЮО
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=279">РЧЛМОМХЫ
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=280">addhdhddjdfhbvjvhv
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=281">addhdhddjdfhbvjvhv
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=283">ЭЖЗЦЯ012
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=285">q1122
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=286">ГЧЫЙХ857
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=287">поисковый запрос 13
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=288">поисковый запрос 13
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=289">поисковый запрос 131
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=290">поисковый запрос 333
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=291">поисковый запрос 333
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=292">поисковый запрос 333
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=293">поисковый запрос 333
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=316">Запрос1
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=318">Автотест Поиск 2026
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=320">Автотест Поиск 2026
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=341">ываац33в2всв34ке
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=353">поисковой запрос
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=355">Запрос для UI теста 1234
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=356">Тикет поиск запр111
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=357">Мои задачи
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=358">поиск по поиску
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=359">some seacrh
+                
+                (Shared)
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=361">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=362">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=363">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=364">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=365">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=366">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=367">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=368">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=369">тест для задания cucumber
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=370">testQuery
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=378">ischTest2
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=379">ischTestSearch1
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=380">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=381">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=394">тест
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=382">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=383">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=384">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=385">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=386">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=387">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=388">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=389">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=390">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=391">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=392">ischTestSearch11
+                
+            </a>
+            
+            <a class="dropdown-item small" href="/tickets/?saved_query=393">ischTestSearch11
+                
+            </a>
+            
+            
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tickets/submit/">
+            <i class="fas fa-fw fa-plus-circle"></i>
+            <span>New Ticket</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/reports/">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/kb/">
+            <i class="fas fa-fw fa-database"></i>
+            <span>Knowledgebase</span>
+          </a>
+        </li>
+        
+    
+    </ul>
+
+
+        <div id="content-wrapper">
+        
+            <div class="container-fluid">
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    
+<li class="breadcrumb-item">
+    <a href="/tickets/">Tickets</a>
+</li>
+<li class="breadcrumb-item active">
+    SP-11099
+</li>
+
+                </ol>
+            
+                
+    
+
+    
+
+
+
+<div class="card mb-3">
+    <!--div class="card-header">
+        
+    </div -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-sm table-border">
+                <thead class="thead-light">
+                    <tr class=""><th colspan="4"><h3>SP-11099. Не работает кнопка Отправить на форме регистрации [Open]</h3>
+                            Queue: Some Product
+                            <span class="ticket_toolbar float-right">
+                        <a href="/tickets/11099/edit/" class="ticket-edit"><button class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i> Edit</button></a>
+                    | <a href="/tickets/11099/delete/" class="ticket-delete"><button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button></a>
+                     | <a href="/tickets/11099/hold/" class="ticket-hold"><button class="btn btn-warning btn-sm"><i class="fas fa-pause"></i> Hold</button></a>
+                    </span></th></tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th class="table-active">Due Date</th>
+                        <td> 
+                        </td>
+                        <th class="table-active">Submitted On</th>
+                        <td>Aug. 17, 2026, 4:08 p.m. (17&nbsp;hours ago)</td>
+                    </tr>
+                    <tr>
+                        <th class="table-active">Assigned To</th>
+                        <td>Unassigned <strong>
+                                <a data-toggle="tooltip" href="?take" title="Assign this ticket to admin@example.org"><button type="button" class="btn btn-primary btn-sm float-right"><i class="fas fa-hand-paper"></i></button></a>
+                        </strong>
+                        </td>
+                        <th class="table-active">Submitter E-Mail</th>
+                        <td> ivan.petrov@company.ru
+                                                          
+                            <strong><a data-toggle="tooltip" href="/tickets/?q=ivan.petrov@company.ru" title="Display tickets filtered for ivan.petrov@company.ru as a keyword">
+                                <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-search"></i></button></a></strong>
+                        <strong><a data-toggle="tooltip" href="/ignore/add/?email=ivan.petrov@company.ru" title="Add email address for the ticket system to ignore.">
+                                <button type="button" class="btn btn-warning btn-sm float-right"><i class="fas fa-eye-slash"></i></button></a></strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="table-active">Priority</th>
+                        <td class="table-warning">1. Critical
+                        </td>
+                        <th class="table-active">Copies To</th>
+                        <td> <a data-toggle="tooltip" href="/tickets/11099/cc/" title="Click here to add / remove people who should receive an e-mail whenever this ticket is updated."><strong><button type="button" class="btn btn-warning btn-sm float-right"><i class="fa fa-share"></i></button></strong></a> <strong><a data-toggle="tooltip" href="?subscribe" title="Click here to subscribe yourself to this ticket, if you want to receive an e-mail whenever this ticket is updated."><button type="button" class="btn btn-warning btn-sm float-right"><i class="fas fa-rss-square"></i></button></a></strong></td>
+                    </tr>
+
+                    <tr>
+                        <th class="table-active">Dependencies</th>
+                        <td>
+                            <a data-toggle="tooltip" href="/tickets/11099/dependency/add/" title="Click on 'Add Dependency', if you want to make this ticket dependent on another ticket. A ticket may not be closed until all tickets it depends on are closed."><button type="button" class="btn btn-primary btn-sm float-right"><i class="fas fa-link"></i></button></a>
+                            
+                            This ticket has no dependencies.
+                            
+                        </td>
+                        <th class="table-active">Total time spent</th>
+                        <td></td>
+                    </tr>
+                    
+                    <tr>
+                        <th class="table-active">Attachments</th>
+                        <td colspan="3">
+                            <ul>
+                            
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="ticket-description" colspan="4">
+                            <h4>Description</h4>
+                            <p>При нажатии на кнопку Отправить на странице регистрации ничего не происходит.</p></td>
+                    </tr>
+
+                    
+                </tbody>
+            </table>
+            <a href="#FurtherEditOptions"><button type="button" class="btn btn-sm btn-warning float-right" onclick="$('#FurtherEditOptions').fadeIn()"><i class="fas fa-pencil-alt"></i>&nbsp;Edit details</button></a>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->
+
+
+
+    
+        
+
+        <div class="card mb-3">
+            <div class="card-header">Respond to this ticket</div>
+            <div class="card-body">
+
+        <form method="post" action="update/" enctype="multipart/form-data">
+
+        <fieldset>
+            <dl>
+                
+
+                <dt><label for="commentBox">Comment / Resolution</label></dt>
+                <dd><textarea rows="8" cols="70" name="comment" id="commentBox"></textarea></dd>
+                <dd class="form_help_text">You can insert ticket and queue details in your message. For more information, see the <a href="../../help/context/">context help page</a>.</dd>
+
+                <dt><label>New Status</label></dt>
+                
+                
+                <dd><div class="form-group">
+                    <label for="st_open" class="active radio-inline"><input type="radio" name="new_status" value="1" id="st_open" checked="checked">Open »</label>
+                    <label for="st_resolved" class="radio-inline"><input type="radio" name="new_status" value="3" id="st_resolved">Resolved »</label>
+                    <label for="st_closed" class="radio-inline"><input type="radio" name="new_status" value="4" id="st_closed">Closed »</label>
+                    <label class="radio-inline" for="st_duplicate"><input type="radio" name="new_status" value="5" id="st_duplicate">Duplicate</label>
+                </div></dd>
+                
+                
+                
+                
+                
+
+                
+                <dt>
+                    <label for="id_public">Is this update public?</label> <span class="form_optional">(Optional)</span>
+                </dt>
+                <dd><input type="checkbox" name="public" value="1" checked="checked">&nbsp; Yes, make this update public.</dd>
+                <dd class="form_help_text">If this is public, the submitter will be e-mailed your comment or resolution.</dd>
+                
+
+                
+                <dt>
+                    <label for="id_time_spent">Time spent</label> <span class="form_optional">(Optional)</span>
+                </dt>
+                <dd><input name="time_spent" type="time"></dd>
+                
+            </dl>
+
+        <p id="ShowFurtherOptPara"><button class="btn btn-warning btn-sm" id="ShowFurtherEditOptions">Change Further Details »</button></p>
+
+        <div id="FurtherEditOptions" style="display: none;">
+
+            <dl>
+
+                <dt><label for="id_title">Title</label></dt>
+                <dd><input type="text" name="title" value="Не работает кнопка Отправить на форме регистрации"></dd>
+
+                <dt><label for="id_owner">Owner</label></dt>
+                <dd><select id="id_owner" name="owner"><option value="0">Unassign</option><option value="1">admin</option><option value="3">atuser</option><option value="4">demo</option><option value="2">userat</option></select></dd>
+
+                <dt><label for="id_priority">Priority</label></dt>
+                <dd><select id="id_priority" name="priority"><option value="1" selected="selected">1. Critical</option><option value="2">2. High</option><option value="3">3. Normal</option><option value="4">4. Low</option><option value="5">5. Very Low</option></select></dd>
+
+                <dt><label for="id_due_date">Due on</label></dt>
+                <dd><input type="text" name="due_date" class="form-control hasDatepicker" autocomplete="off" id="id_due_date"></dd>
+
+            </dl>
+
+        </div>
+
+        <p id="ShowFileUploadPara" style="display: none;"><button class="btn btn-warning btn-sm" id="ShowFileUpload">Attach File(s) »</button></p>
+
+        <div id="FileUpload" style="">
+
+            <dl>
+                <dt><label for="id_file">Attach a File</label></dt>
+                <dd>
+                    <div class="add_file_fields_wrap">
+                        <button class="add_file_field_button btn btn-success btn-xs">Add Another File</button>
+                        <div><label class="btn btn-primary btn-sm btn-file">
+                                Browse... <input type="file" name="attachment" id="file0" style="display: none;">
+                        </label><span>&nbsp;</span><span id="selectedfilename0">No files selected.</span></div>
+                    </div>
+                </dd>
+            </dl>
+
+        </div>
+
+        </fieldset>
+
+        <button class="btn btn-primary float-right" type="submit">Update This Ticket</button>
+
+        <input type="hidden" name="csrfmiddlewaretoken" value="mWBLmyoBX0mgMJ9ANgiEP08KqXxDgsZGhGoklKB1aTJ3ga6L29FabM4ywspjR6H3"></form>
+
+            </div>
+        </div>
+    
+
+            
+            </div>
+            <!-- /.container-fluid -->
+        
+            
+<!-- Sticky Footer -->
+<footer class="sticky-footer">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Powered by <a href="https://github.com/django-helpdesk/django-helpdesk">django-helpdesk</a>.</span>
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+            
+
+
+    
+<script type="text/javascript" language="javascript">
+$( function() {
+	$( "#id_due_date" ).datepicker({dateFormat: 'yy-mm-dd'});
+} );
+</script>
+
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+    $("#ShowFurtherEditOptions").click(function() {
+        $("#FurtherEditOptions").toggle();
+        return false;
+    });
+
+    $("#ShowFileUpload").click(function() {
+        $("#FileUpload").fadeIn();
+        $("#ShowFileUploadPara").hide();
+        return false;
+    });
+
+    $('#id_preset').change(function() {
+        preset = $('#id_preset').val();
+        if (preset != '') {
+            $.get("/raw/preset/?id=" + preset, function(data) {
+                $("#commentBox").val(data)
+            });
+        }
+    });
+
+    $("[data-toggle=tooltip]").tooltip();
+
+    // lists for file input change events, then updates the associated text label
+    // with the file name selected
+    $('.add_file_fields_wrap').on('fileselect', ':file', function(event, numFiles, label, browseButtonNum) {
+        $("#selectedfilename"+browseButtonNum).html(label);
+    });
+
+    var x = 0;
+    var wrapper         = $(".add_file_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_file_field_button"); //Add button ID
+
+    $(add_button).click(function(e){ //on add input button click
+        x++;
+        e.preventDefault();
+        $(wrapper).append("<div><label class='btn btn-primary btn-sm btn-file'>Browse... <input type='file' name='attachment' id='file" + x + "' multiple style='display: none;'/></label><span>&nbsp;</span><span id='selectedfilename" + x + "'>No files selected.</span></div>"); //add input box
+    });
+
+});
+
+// this function listens for changes on any file input, and
+// emits the appropriate event to update the input's text.
+// Needed to have properly styled file input buttons! (this really shouldn't be this hard...)
+$(document).on('change', ':file', function() {
+    var input = $(this),
+        inputWidgetNum = $(this).attr('id').split("file")[1],
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label, inputWidgetNum]);
+});
+</script>
+
+
+
+
+
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div><div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div></body></html>

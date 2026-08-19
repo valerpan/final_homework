@@ -32,6 +32,10 @@ public abstract class AbstractWebSteps {
         getStorage().put(key, value);
     }
 
+    protected Object getValueFromStorage(String key) {
+        return getStorage().get(key);
+    }
+
     protected WebPage getPage(String name) {
         WebPage page = Environment.getPage(name);
         pageManager.setCurrentPage(page);
