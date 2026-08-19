@@ -8,14 +8,13 @@ import org.testng.annotations.DataProvider;
                 "pretty",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
-        tags = "@helpdesk",
-        features = {"classpath:features/"},
+        features = "classpath:features",
         glue = {"ru.lanit.at.steps", "ru.lanit.at.hooks", "ru.lanit.at.corecommonstep"}
 )
 public class Runner extends AbstractTestNGCucumberTests {
 
     @Override
-    @DataProvider(parallel = false)
+    @DataProvider(parallel = true)
 
     public Object[][] scenarios() {
         return super.scenarios();
